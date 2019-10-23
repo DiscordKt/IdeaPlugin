@@ -1,0 +1,26 @@
+<idea-plugin>
+  <id>me.jakejmattson.kutils</id>
+  <name>KUtils</name>
+  <version>0.0.1</version>
+  <vendor email="JakeJMattson@gmail.com">JakeJMattson</vendor>
+
+  <description>An IntelliJ plugin for KUtils. Generate projects from a template and write more idiomatic code.</description>
+
+  <idea-version since-build="181"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.template.KUtilsModuleType"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
