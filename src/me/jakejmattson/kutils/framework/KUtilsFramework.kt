@@ -8,6 +8,10 @@ import com.intellij.openapi.module.*
 import com.intellij.openapi.roots.*
 import javax.swing.*
 
+private val chkProjectTemplate = JCheckBox("Project Template")
+
+private val buttons = listOf(chkProjectTemplate, JCheckBox("Extensive Example"))
+
 class KUtilsFramework : FrameworkTypeEx("me.jakejmattson.kutils.framework.KUtilsFramework") {
     override fun createProvider() = object : FrameworkSupportInModuleProvider() {
         override fun getFrameworkType() = this@KUtilsFramework
@@ -16,13 +20,24 @@ class KUtilsFramework : FrameworkTypeEx("me.jakejmattson.kutils.framework.KUtils
             return object : FrameworkSupportInModuleConfigurable() {
                 override fun createComponent() =
                     JPanel().apply {
-                        this.layout = BoxLayout(this, 1)
-                        this.add(JCheckBox("Project Template"))
-                        this.add(JCheckBox("Extensive Example"))
+                        layout = BoxLayout(this, 1)
+
+                        buttons.forEach { currentBox ->
+                            currentBox.addActionListener {
+                                buttons.forEach {
+                                    if (it != currentBox)
+                                        it.isSelected = false
+                                }
+                            }
+                            add(currentBox)
+                        }
+
+                        buttons.first().isSelected = true
                     }
 
                 override fun addSupport(module: Module, model: ModifiableRootModel, provider: ModifiableModelsProvider) {
-
+                    val button = buttons.firstOrNull { it.isSelected }
+                    println(button?.name)
                 }
             }
         }
