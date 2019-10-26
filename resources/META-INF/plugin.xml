@@ -8,8 +8,8 @@
       The following features are available:
         <ul>
           <li>Create bot projects from a template.</li>
-          <li><strike>Suggest code changes.</strike></li>
-          <li><strike>Notifications for updates.</strike></li>
+          <li><s>Suggest code changes.</s></li>
+          <li><s>Notifications for updates.</s></li>
         </ul>
       ]]>
   </description>
@@ -18,7 +18,7 @@
   <idea-version since-build="181"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.template.KUtilsModuleType"/>
+    <framework.type implementation="me.jakejmattson.kutils.framework.KUtilsFramework"/>
   </extensions>
 
 </idea-plugin>
