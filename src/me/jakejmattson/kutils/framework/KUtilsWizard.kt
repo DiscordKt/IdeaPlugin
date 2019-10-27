@@ -5,12 +5,14 @@ import com.intellij.ide.util.projectWizard.*
 import com.intellij.openapi.module.ModuleType
 import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider
+import java.awt.*
 import javax.swing.*
 
 private val chkProjectTemplate = JCheckBox("Project Template")
 private val chkExtensiveExample = JCheckBox("Extensive Example")
-
 private val buttons = listOf(chkProjectTemplate, chkExtensiveExample)
+
+private val txtPackage = JTextField("me.your.organization.name")
 
 class KUtilsWizard : ModuleBuilder() {
     override fun getModuleType() = object : ModuleType<KUtilsWizard>("me.jakejmattson.kutils.framework.KUtilsWizard") {
@@ -21,7 +23,7 @@ class KUtilsWizard : ModuleBuilder() {
     }
 
     override fun createWizardSteps(wizardContext: WizardContext, modulesProvider: ModulesProvider): Array<ModuleWizardStep> {
-        return arrayOf(createProjectSelectionStep())
+        return arrayOf(createProjectSetupStep())
     }
 
     override fun setupRootModel(modifiableRootModel: ModifiableRootModel) {
@@ -40,22 +42,39 @@ private fun generateExample(modifiableRootModel: ModifiableRootModel) {
     println("Generating Example")
 }
 
-private fun createProjectSelectionStep() = object : ModuleWizardStep() {
+private fun createProjectSetupStep() = object : ModuleWizardStep() {
     override fun getComponent() = JPanel().apply {
-        layout = BoxLayout(this, 1)
+        layout = GridLayout(3, 1)
 
-        buttons.forEach { currentBox ->
-            currentBox.addActionListener {
-                buttons.forEach {
-                    if (it != currentBox)
-                        it.isSelected = false
+        addPanel {
+            it.layout = GridLayout(2, 1)
+
+            buttons.forEach { currentBox ->
+                currentBox.addActionListener {
+                    buttons.forEach {
+                        if (it != currentBox)
+                            it.isSelected = false
+                    }
                 }
+                it.add(currentBox)
             }
-            add(currentBox)
+
+            buttons.first().isSelected = true
         }
 
-        buttons.first().isSelected = true
+        addPanel {
+            it.layout = FlowLayout()
+
+            it.add(JLabel("GroupID: "))
+            it.add(txtPackage)
+        }
     }
 
-    override fun updateDataModel() { }
+    override fun updateDataModel() = Unit
+}
+
+private fun JPanel.addPanel(builder: (JPanel) -> Unit) {
+    val panel = JPanel()
+    builder.invoke(panel)
+    add(panel)
 }
