@@ -18,7 +18,7 @@
   <idea-version since-build="181"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <framework.type implementation="me.jakejmattson.kutils.framework.KUtilsFramework"/>
+    <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsWizard" id="KUtilsWizard" order="first"/>
   </extensions>
 
 </idea-plugin>
