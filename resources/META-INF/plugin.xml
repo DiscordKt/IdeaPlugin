@@ -20,5 +20,4 @@
   <extensions defaultExtensionNs="com.intellij">
     <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsWizard" id="KUtilsWizard" order="first"/>
   </extensions>
-
 </idea-plugin>

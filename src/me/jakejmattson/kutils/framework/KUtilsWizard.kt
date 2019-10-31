@@ -6,6 +6,8 @@ import com.intellij.openapi.module.ModuleType
 import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider
 import java.awt.*
+import java.io.File
+import java.nio.file.Files
 import javax.swing.*
 
 private val chkProjectTemplate = JCheckBox("Project Template")
@@ -35,7 +37,18 @@ class KUtilsWizard : ModuleBuilder() {
 }
 
 private fun generateProject(modifiableRootModel: ModifiableRootModel) {
-    println("Generating Project")
+
+    val project = modifiableRootModel.project
+
+    val basePath = project.basePath
+    val packagePath = txtPackage.text.split(".").joinToString("/")
+    val projectName = project.name.toLowerCase()
+
+    val structureFile = File("$basePath/src/main/kotlin/$packagePath/$projectName")
+    val mainApp = File(structureFile.path + "/MainApp.kt")
+
+    Files.createDirectories(structureFile.toPath())
+    Files.createFile(mainApp.toPath())
 }
 
 private fun generateExample(modifiableRootModel: ModifiableRootModel) {
