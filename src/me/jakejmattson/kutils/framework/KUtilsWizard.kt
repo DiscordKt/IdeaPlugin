@@ -17,7 +17,7 @@ private val buttons = listOf(chkProjectTemplate, chkExtensiveExample)
 private val txtPackage = JTextField("me.your.organization.name")
 
 class KUtilsWizard : ModuleBuilder() {
-    override fun getModuleType() = object : ModuleType<KUtilsWizard>("me.jakejmattson.kutils.framework.KUtilsWizard") {
+    override fun getModuleType() = object : ModuleType<KUtilsWizard>("KUtils") {
         override fun createModuleBuilder() = KUtilsWizard()
         override fun getName() = "KUtils"
         override fun getDescription() = "Create a project from a KUtils template."
@@ -44,11 +44,26 @@ private fun generateProject(modifiableRootModel: ModifiableRootModel) {
     val packagePath = txtPackage.text.split(".").joinToString("/")
     val projectName = project.name.toLowerCase()
 
-    val structureFile = File("$basePath/src/main/kotlin/$packagePath/$projectName")
-    val mainApp = File(structureFile.path + "/MainApp.kt")
+    val projectDir = File("$basePath/src/main/kotlin/$packagePath/$projectName")
 
-    Files.createDirectories(structureFile.toPath())
-    Files.createFile(mainApp.toPath())
+    val commonFolders = listOf(
+        File(projectDir.path + "/arguments"),
+        File(projectDir.path + "/commands"),
+        File(projectDir.path + "/preconditions"),
+        File(projectDir.path + "/services")
+    )
+
+    val mainApp = File(projectDir.path + "/MainApp.kt")
+    
+    Files.createDirectories(projectDir.toPath())
+    commonFolders.createDirectories()
+    mainApp.createNewFile()
+}
+
+private fun List<File>.createDirectories() {
+    this.forEach {
+        Files.createDirectories(it.toPath())
+    }
 }
 
 private fun generateExample(modifiableRootModel: ModifiableRootModel) {
