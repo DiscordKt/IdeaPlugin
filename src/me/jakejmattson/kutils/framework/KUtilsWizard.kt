@@ -5,6 +5,7 @@ import com.intellij.ide.util.projectWizard.*
 import com.intellij.openapi.module.ModuleType
 import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider
+import com.intellij.openapi.vfs.VirtualFileManager
 import java.awt.*
 import java.io.File
 import java.nio.file.Files
@@ -17,12 +18,7 @@ private val buttons = listOf(chkProjectTemplate, chkExtensiveExample)
 private val txtPackage = JTextField("me.your.organization.name")
 
 class KUtilsWizard : ModuleBuilder() {
-    override fun getModuleType() = object : ModuleType<KUtilsWizard>("KUtils") {
-        override fun createModuleBuilder() = KUtilsWizard()
-        override fun getName() = "KUtils"
-        override fun getDescription() = "Create a project from a KUtils template."
-        override fun getNodeIcon(b: Boolean) = AllIcons.General.Information!!
-    }
+    override fun getModuleType() = KUtilsModuleType.getInstance()
 
     override fun createWizardSteps(wizardContext: WizardContext, modulesProvider: ModulesProvider): Array<ModuleWizardStep> {
         return arrayOf(createProjectSetupStep())
@@ -41,8 +37,9 @@ private fun generateProject(modifiableRootModel: ModifiableRootModel) {
     val project = modifiableRootModel.project
 
     val basePath = project.basePath
-    val packagePath = txtPackage.text.split(".").joinToString("/")
     val projectName = project.name.toLowerCase()
+    val packagePath = txtPackage.text.split(".").joinToString("/")
+    val packageStatement = txtPackage.text + "." + projectName
 
     val projectDir = File("$basePath/src/main/kotlin/$packagePath/$projectName")
 
@@ -53,11 +50,10 @@ private fun generateProject(modifiableRootModel: ModifiableRootModel) {
         File(projectDir.path + "/services")
     )
 
-    val mainApp = File(projectDir.path + "/MainApp.kt")
-    
     Files.createDirectories(projectDir.toPath())
     commonFolders.createDirectories()
-    mainApp.createNewFile()
+
+    projectDir.createMainApp(packageStatement)
 }
 
 private fun List<File>.createDirectories() {
