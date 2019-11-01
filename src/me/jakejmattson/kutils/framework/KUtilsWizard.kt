@@ -1,11 +1,8 @@
 package me.jakejmattson.kutils.framework
 
-import com.intellij.icons.AllIcons
 import com.intellij.ide.util.projectWizard.*
-import com.intellij.openapi.module.ModuleType
 import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.openapi.roots.ui.configuration.ModulesProvider
-import com.intellij.openapi.vfs.VirtualFileManager
 import java.awt.*
 import java.io.File
 import java.nio.file.Files
@@ -42,24 +39,10 @@ private fun generateProject(modifiableRootModel: ModifiableRootModel) {
     val packageStatement = txtPackage.text + "." + projectName
 
     val projectDir = File("$basePath/src/main/kotlin/$packagePath/$projectName")
-
-    val commonFolders = listOf(
-        File(projectDir.path + "/arguments"),
-        File(projectDir.path + "/commands"),
-        File(projectDir.path + "/preconditions"),
-        File(projectDir.path + "/services")
-    )
-
     Files.createDirectories(projectDir.toPath())
-    commonFolders.createDirectories()
 
+    projectDir.createCommonDirectories()
     projectDir.createMainApp(packageStatement)
-}
-
-private fun List<File>.createDirectories() {
-    this.forEach {
-        Files.createDirectories(it.toPath())
-    }
 }
 
 private fun generateExample(modifiableRootModel: ModifiableRootModel) {

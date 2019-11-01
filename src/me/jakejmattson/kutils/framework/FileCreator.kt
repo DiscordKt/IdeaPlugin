@@ -1,6 +1,24 @@
 package me.jakejmattson.kutils.framework
 
 import java.io.File
+import java.nio.file.Files
+
+fun File.createCommonDirectories() {
+    val commonFolders = listOf(
+        File("$path/arguments"),
+        File("$path/commands"),
+        File("$path/preconditions"),
+        File("$path/services")
+    )
+
+    commonFolders.createDirectories()
+}
+
+private fun List<File>.createDirectories() {
+    this.forEach {
+        Files.createDirectories(it.toPath())
+    }
+}
 
 fun File.createMainApp(packageStatement: String) {
     val mainApp = File("$path/MainApp.kt")
