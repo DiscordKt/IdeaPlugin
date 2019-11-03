@@ -21,4 +21,10 @@
     <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.framework.KUtilsModuleType"/>
     <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsWizard" id="KUtilsWizard" order="first"/>
   </extensions>
+  <actions>
+    <action id="KutilsServiceTemplateAction" class="me.jakejmattson.kutils.actions.ServiceTemplateAction" text="Service"
+            description="Create a Service file from a template">
+      <add-to-group group-id="NewGroup" anchor="first"/>
+    </action>
+  </actions>
 </idea-plugin>
