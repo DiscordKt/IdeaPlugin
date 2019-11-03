@@ -1,8 +1,7 @@
-package me.jakejmattson.kutils.actions
+package me.jakejmattson.kutils.templates
 
 import com.intellij.codeInsight.template.TemplateManager
 import com.intellij.openapi.actionSystem.*
-import me.jakejmattson.kutils.framework.Templates
 
 class ServiceTemplateAction : AnAction() {
 

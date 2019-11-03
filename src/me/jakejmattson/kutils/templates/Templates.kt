@@ -1,4 +1,4 @@
-package me.jakejmattson.kutils.framework
+package me.jakejmattson.kutils.templates
 
 import com.intellij.codeInsight.template.TemplateManager
 import com.intellij.openapi.project.Project
