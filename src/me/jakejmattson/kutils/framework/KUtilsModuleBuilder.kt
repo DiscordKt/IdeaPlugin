@@ -14,7 +14,7 @@ private val buttons = listOf(chkProjectTemplate, chkExtensiveExample)
 
 private val txtPackage = JTextField("me.your.organization.name")
 
-class KUtilsWizard : ModuleBuilder() {
+class KUtilsModuleBuilder : ModuleBuilder() {
     override fun getModuleType() = KUtilsModuleType.getInstance()
 
     override fun createWizardSteps(wizardContext: WizardContext, modulesProvider: ModulesProvider): Array<ModuleWizardStep> {
@@ -32,7 +32,6 @@ class KUtilsWizard : ModuleBuilder() {
 private fun generateProject(modifiableRootModel: ModifiableRootModel) {
 
     val project = modifiableRootModel.project
-
     val basePath = project.basePath
     val projectName = project.name.toLowerCase()
     val packagePath = txtPackage.text.split(".").joinToString("/")

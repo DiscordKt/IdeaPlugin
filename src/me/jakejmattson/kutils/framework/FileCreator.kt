@@ -11,11 +11,7 @@ fun File.createCommonDirectories() {
         File("$path/services")
     )
 
-    commonFolders.createDirectories()
-}
-
-private fun List<File>.createDirectories() {
-    this.forEach {
+    commonFolders.forEach {
         Files.createDirectories(it.toPath())
     }
 }

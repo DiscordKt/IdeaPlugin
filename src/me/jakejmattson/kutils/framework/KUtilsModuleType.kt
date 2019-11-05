@@ -5,12 +5,12 @@ import com.intellij.openapi.module.*
 
 private const val ID = "KUtils"
 
-class KUtilsModuleType : ModuleType<KUtilsWizard>(ID) {
+class KUtilsModuleType : ModuleType<KUtilsModuleBuilder>(ID) {
     override fun getName()= "KUtils"
 
     override fun getDescription() = "A module for KUtils support"
 
-    override fun createModuleBuilder() = KUtilsWizard()
+    override fun createModuleBuilder() = KUtilsModuleBuilder()
 
     override fun getNodeIcon(b: Boolean) = AllIcons.General.Information
 

@@ -7,9 +7,10 @@
       Provides <a href="https://gitlab.com/Aberrantfox/KUtils/">KUtils</a> support.
       The following features are available:
         <ul>
-          <li>Create bot projects from a template.</li>
-          <li><s>Suggest code changes.</s></li>
-          <li><s>Notifications for updates.</s></li>
+          <li>Create KUtils files from a template.</li>
+          <li><s>Create bot projects from a template.</s></li>
+          <li><s>Get idiomatic code suggestions.</s></li>
+          <li><s>Receive notifications for updates.</s></li>
         </ul>
       ]]>
   </description>
@@ -19,11 +20,12 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.framework.KUtilsModuleType"/>
-    <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsWizard" id="KUtilsWizard" order="first"/>
+    <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsModuleBuilder" id="KUtilsWizard" order="first"/>
   </extensions>
   <actions>
-      <action id="KutilsServiceTemplateAction" class="me.jakejmattson.kutils.templates.ServiceTemplateAction" text="Service"
-              description="Create a Service file from a template.">
+      <action text="Service"
+              description="Create a KUtils file from a template."
+              class="me.jakejmattson.kutils.templates.FileTemplateAction">
         <add-to-group group-id="NewGroup" anchor="first"/>
       </action>
   </actions>

@@ -17,7 +17,7 @@ import java.util.Properties
 
 private const val ACTION_NAME = "KUtils File"
 
-class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new KUtils file", null), DumbAware {
+class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new KUtils file", null), DumbAware {
 
     override fun postProcess(createdElement: PsiFile, templateName: String?, customProperties: Map<String, String>?) {
         super.postProcess(createdElement, templateName, customProperties)
@@ -32,16 +32,13 @@ class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates
     }
 
     override fun buildDialog(project: Project, directory: PsiDirectory, builder: CreateFileFromTemplateDialog.Builder) {
-        val templates = Templates(project)
-
-        builder.setTitle("New KUtils File")
+        builder.setTitle("New $ACTION_NAME")
+            .setValidator(NameValidator)
             .addKind("CommandSet", null, "<Template>")
             .addKind("Service", null, "<Template>")
             .addKind("Data", null, "<Template>")
             .addKind("Precondition", null, "<Template>")
             .addKind("ArgumentType", null, "<Template>")
-
-        builder.setValidator(NameValidator)
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME
@@ -53,10 +50,9 @@ class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates
             val projectFileIndex = ProjectRootManager.getInstance(project).fileIndex
             return ideView.directories.any { projectFileIndex.isInSourceContent(it.virtualFile) }
         }
+
         return false
     }
-
-    override fun startInWriteAction() = false
 
     override fun createFileFromTemplate(name: String, template: FileTemplate, dir: PsiDirectory): PsiFile? {
         val directorySeparators = if (template.name == "Kotlin File") FILE_SEPARATORS else FQNAME_SEPARATORS
@@ -86,13 +82,8 @@ class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates
                 return null
             }
 
-            override fun checkInput(inputString: String): Boolean {
-                return true
-            }
-
-            override fun canClose(inputString: String): Boolean {
-                return getErrorText(inputString) == null
-            }
+            override fun checkInput(inputString: String) = true
+            override fun canClose(inputString: String) = getErrorText(inputString) == null
         }
 
         private fun findOrCreateTarget(dir: PsiDirectory, name: String, directorySeparators: CharArray): Pair<String, PsiDirectory> {
@@ -113,35 +104,26 @@ class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates
                     break
                 }
             }
+
             return Pair(className, targetDir)
         }
 
-        private fun removeKotlinExtensionIfPresent(name: String): String = when {
-            name.endsWith(".kt") -> name.removeSuffix(".kt")
-            else -> name
-        }
+        private fun removeKotlinExtensionIfPresent(name: String) = name.removeSuffix(".kt")
 
-        private fun createFromTemplate(dir: PsiDirectory, className: String, template: FileTemplate): PsiFile? {
-            val project = dir.project
-            val defaultProperties = FileTemplateManager.getInstance(project).defaultProperties
+        private fun createFromTemplate(dir: PsiDirectory, className: String, template: FileTemplate) =
+            try {
+                val project = dir.project
+                val defaultProperties = FileTemplateManager.getInstance(project).defaultProperties
+                val properties = Properties(defaultProperties)
+                val attributes = AttributesDefaults(className).withFixedName(true)
 
-            val properties = Properties(defaultProperties)
-
-            val element = try {
-                CreateFromTemplateDialog(
-                    project, dir, template,
-                    AttributesDefaults(className).withFixedName(true),
-                    properties
-                ).create()
+                CreateFromTemplateDialog(project, dir, template, attributes, properties).create().containingFile
             } catch (e: IncorrectOperationException) {
                 throw e
             } catch (e: Exception) {
                 LOG.error(e)
-                return null
+                null
             }
-
-            return element?.containingFile
-        }
 
         private val FILE_SEPARATORS = charArrayOf('/', '\\')
         private val FQNAME_SEPARATORS = charArrayOf('/', '\\', '.')
