@@ -32,13 +32,15 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
     }
 
     override fun buildDialog(project: Project, directory: PsiDirectory, builder: CreateFileFromTemplateDialog.Builder) {
+        registerTemplates(project)
+
         builder.setTitle("New $ACTION_NAME")
             .setValidator(NameValidator)
-            .addKind("CommandSet", null, "<Template>")
-            .addKind("Service", null, "<Template>")
-            .addKind("Data", null, "<Template>")
-            .addKind("Precondition", null, "<Template>")
-            .addKind("ArgumentType", null, "<Template>")
+            .addKind("CommandSet", null, "KUtils CommandSet")
+            .addKind("Service", null, "KUtils Service")
+            .addKind("Data", null, "KUtils Data")
+            .addKind("Precondition", null, "KUtils Precondition")
+            .addKind("ArgumentType", null, "KUtils ArgumentType")
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME
