@@ -35,8 +35,11 @@ class ServiceTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates
         val templates = Templates(project)
 
         builder.setTitle("New KUtils File")
-            .addKind("Service", null, templates.serviceTemplate.key)
-            .addKind("Something else", null, "Kotlin file")
+            .addKind("CommandSet", null, "<Template>")
+            .addKind("Service", null, "<Template>")
+            .addKind("Data", null, "<Template>")
+            .addKind("Precondition", null, "<Template>")
+            .addKind("ArgumentType", null, "<Template>")
 
         builder.setValidator(NameValidator)
     }

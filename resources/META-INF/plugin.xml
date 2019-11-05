@@ -22,12 +22,9 @@
     <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsWizard" id="KUtilsWizard" order="first"/>
   </extensions>
   <actions>
-    <group id="me.jakejmattson.kutils.templates.KUtilsTemplateGroup" class="me.jakejmattson.kutils.templates.KUtilsActionGroup"
-           text="KUtils" popup="true">
-      <add-to-group group-id="NewGroup" anchor="first"/>
       <action id="KutilsServiceTemplateAction" class="me.jakejmattson.kutils.templates.ServiceTemplateAction" text="Service"
               description="Create a Service file from a template.">
+        <add-to-group group-id="NewGroup" anchor="first"/>
       </action>
-    </group>
   </actions>
 </idea-plugin>
