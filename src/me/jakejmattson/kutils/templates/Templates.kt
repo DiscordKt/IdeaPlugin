@@ -3,9 +3,8 @@ package me.jakejmattson.kutils.templates
 import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.openapi.project.Project
 
-private const val DOLLAR_SIGN = "$"
-private const val PACKAGE_STATEMENT = "#if ($DOLLAR_SIGN{PACKAGE_NAME} != \"\")package $DOLLAR_SIGN{PACKAGE_NAME}#end"
-private const val FILE_NAME = "$DOLLAR_SIGN{NAME}"
+private const val PACKAGE_STATEMENT = "#if (${"$"}{PACKAGE_NAME} != \"\")package ${"$"}{PACKAGE_NAME}#end"
+private const val FILE_NAME = "${"$"}{NAME}"
 
 fun registerTemplates(project: Project) {
     val templateManager = FileTemplateManager.getInstance(project)
@@ -16,10 +15,17 @@ fun registerTemplates(project: Project) {
 
             import me.aberrantfox.kjdautils.api.dsl.command.CommandSet
             
+            #if (${"$"}NAME.toString().endsWith("Commands"))
+            @CommandSet("$FILE_NAME")
+            fun ${FILE_NAME}() {
+            
+            }
+            #else
             @CommandSet("$FILE_NAME")
             fun ${FILE_NAME}Commands() {
             
             }
+            #end
         """.trimIndent()
     }
 
@@ -28,11 +34,18 @@ fun registerTemplates(project: Project) {
             $PACKAGE_STATEMENT
             
             import me.aberrantfox.kjdautils.api.annotation.Service
-            
+
+            #if (${"$"}NAME.toString().endsWith("Service"))
             @Service
             class $FILE_NAME() {
 
             }
+            #else
+            @Service
+            class ${FILE_NAME}Service() {
+
+            }
+            #end
         """.trimIndent()
     }
 
@@ -56,10 +69,17 @@ fun registerTemplates(project: Project) {
             import me.aberrantfox.kjdautils.internal.command.Fail
             import me.aberrantfox.kjdautils.internal.command.Pass
             
+            #if (${"$"}NAME.toString().endsWith("Precondition"))
+            @Precondition
+            fun produce${FILE_NAME}() = precondition {
+                return@precondition Pass
+            }
+            #else
             @Precondition
             fun produce${FILE_NAME}Precondition() = precondition {
                 return@precondition Pass
             }
+            #end
         """.trimIndent()
     }
 
