@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://kotlinlang.org/">
-    <img src="https://img.shields.io/badge/Kotlin-1.3.50-blue.svg" alt="Kotlin 1.3.50">
+    <img src="https://img.shields.io/badge/Kotlin-1.3.61-blue.svg" alt="Kotlin 1.3.61">
   </a>
 </p>
 
@@ -16,3 +16,10 @@
 # KUtils-plugin
 
 This is a plugin for IntelliJ that aids in the development of Discord bots using the KUtils framework.
+
+### Goals
+
+* Create KUtils files from a template.
+* Create bot projects from a template.
+* Get idiomatic code suggestions.
+* Receive notifications for updates.
