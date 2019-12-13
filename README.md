@@ -2,6 +2,9 @@
   <a href="https://kotlinlang.org/">
     <img src="https://img.shields.io/badge/Kotlin-1.3.61-blue.svg" alt="Kotlin 1.3.61">
   </a>
+  <a href="LICENSE.md">
+    <img src="https://img.shields.io/github/license/JakeJMattson/KUtils-plugin.svg" alt="License">
+  </a>
 </p>
 
 <p align="center">
@@ -23,3 +26,6 @@ This is a plugin for IntelliJ that aids in the development of Discord bots using
 * Create bot projects from a template.
 * Get idiomatic code suggestions.
 * Receive notifications for updates.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
