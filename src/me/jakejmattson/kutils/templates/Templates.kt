@@ -14,18 +14,23 @@ fun registerTemplates(project: Project) {
             $PACKAGE_STATEMENT
 
             import me.aberrantfox.kjdautils.api.dsl.command.CommandSet
+            import me.aberrantfox.kjdautils.api.dsl.command.commands
             
             #if (${"$"}NAME.toString().endsWith("Commands"))
             @CommandSet("$FILE_NAME")
-            fun ${FILE_NAME}() {
-            
-            }
+            fun ${FILE_NAME}() = commands {
             #else
             @CommandSet("$FILE_NAME")
-            fun ${FILE_NAME}Commands() {
-            
-            }
+            fun ${FILE_NAME}Commands() = commands {
             #end
+                command("CommandName") {
+                    description = "Command description"
+                    execute {
+                        it.respond("Hello World")
+                    }
+                }
+            }
+            
         """.trimIndent()
     }
 
