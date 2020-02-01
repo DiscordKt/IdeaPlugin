@@ -1,4 +1,4 @@
-package me.jakejmattson.kutils.framework
+package me.jakejmattson.kutils.module
 
 import com.intellij.icons.AllIcons
 import com.intellij.openapi.module.*

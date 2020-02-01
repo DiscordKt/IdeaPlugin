@@ -1,4 +1,4 @@
-package me.jakejmattson.kutils.framework
+package me.jakejmattson.kutils.module
 
 import java.io.File
 import java.nio.file.Files

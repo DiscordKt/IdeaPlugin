@@ -1,4 +1,4 @@
-package me.jakejmattson.kutils.framework
+package me.jakejmattson.kutils.module
 
 import com.intellij.ide.util.projectWizard.*
 import com.intellij.openapi.roots.ModifiableRootModel

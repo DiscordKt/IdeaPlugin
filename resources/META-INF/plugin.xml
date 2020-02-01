@@ -19,8 +19,8 @@
   <idea-version since-build="181"/>
 
   <extensions defaultExtensionNs="com.intellij">
-    <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.framework.KUtilsModuleType"/>
-    <moduleBuilder builderClass="me.jakejmattson.kutils.framework.KUtilsModuleBuilder" id="KUtilsWizard" order="first"/>
+    <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.module.KUtilsModuleType"/>
+    <moduleBuilder builderClass="me.jakejmattson.kutils.module.KUtilsModuleBuilder" id="KUtilsWizard" order="first"/>
   </extensions>
   <actions>
       <action text="Service"
