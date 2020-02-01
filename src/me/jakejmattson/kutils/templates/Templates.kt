@@ -92,8 +92,13 @@ fun registerTemplates(project: Project) {
             import me.aberrantfox.kjdautils.internal.command.ArgumentResult
             import me.aberrantfox.kjdautils.internal.command.ConsumptionType
             
+            #if (${"$"}NAME.toString().endsWith("Arg"))
             open class ${FILE_NAME}(override val name: String = "") : ArgumentType<Any>() {
                 companion object : $FILE_NAME()
+            #else
+            open class ${FILE_NAME}Arg(override val name: String = "") : ArgumentType<Any>() {
+                companion object : ${FILE_NAME}Arg()
+            #end
             
                 override val examples = arrayListOf("")
                 override val consumptionType = ConsumptionType.Single
