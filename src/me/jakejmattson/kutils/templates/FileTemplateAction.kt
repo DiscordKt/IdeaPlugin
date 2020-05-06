@@ -41,6 +41,7 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
             .addKind("Data", null, "KUtils Data")
             .addKind("Precondition", null, "KUtils Precondition")
             .addKind("ArgumentType", null, "KUtils ArgumentType")
+            .addKind("Conversation", null, "KUtils Conversation")
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME

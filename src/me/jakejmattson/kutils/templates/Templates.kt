@@ -13,7 +13,7 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
 
-            import me.aberrantfox.kjdautils.api.dsl.command.CommandSet
+            import me.aberrantfox.kjdautils.api.annotation.CommandSet
             import me.aberrantfox.kjdautils.api.dsl.command.commands
             
             #if (${"$"}NAME.toString().endsWith("Commands"))
@@ -104,11 +104,35 @@ fun registerTemplates(project: Project) {
             open class ${FILE_NAME}Arg(override val name: String = "") : ArgumentType<Any>() {
                 companion object : ${FILE_NAME}Arg()
             #end
-            
-                override val examples = arrayListOf("")
+
                 override val consumptionType = ConsumptionType.Single
+
                 override fun convert(arg: String, args: List<String>, event: CommandEvent<*>): ArgumentResult<Any> {
                     return ArgumentResult.Success("")
+                }
+
+                override fun generateExamples(event: CommandEvent<*>): List<String> {
+                    TODO("Not yet implemented")
+                }
+            }
+        """.trimIndent()
+    }
+
+    templateManager.registerKUtilsTemplate("Conversation") {
+        """
+            $PACKAGE_STATEMENT
+            
+            import me.aberrantfox.kjdautils.api.dsl.Conversation
+            import me.aberrantfox.kjdautils.api.dsl.conversation
+            
+            #if (${"$"}NAME.toString().endsWith("Conversation"))
+            class $FILE_NAME() : Conversation() {
+            #else
+            class ${FILE_NAME}Conversation() : Conversation() {
+            #end
+                @Start
+                fun conversation() = conversation {
+
                 }
             }
         """.trimIndent()
