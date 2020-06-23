@@ -1,0 +1,32 @@
+<idea-plugin>
+    <id>me.jakejmattson.kutils</id>
+    <name>KUtils</name>
+    <vendor email="JakeJMattson@gmail.com" url="https://github.com/JakeJMattson">JakeJMattson</vendor>
+    <description>
+        <![CDATA[
+      Provides <a href="https://gitlab.com/Aberrantfox/KUtils/">KUtils</a> support.
+      The following features are available:
+        <ul>
+          <li>Create KUtils files from a template.</li>
+          <li><s>Create bot projects from a template.</s></li>
+          <li><s>Get idiomatic code suggestions.</s></li>
+          <li><s>Receive notifications for updates.</s></li>
+        </ul>
+      ]]>
+    </description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action text="FileTemplateAction"
+                id="me.jakejmattson.kutils.templates.FileTemplateAction"
+                class="me.jakejmattson.kutils.templates.FileTemplateAction">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

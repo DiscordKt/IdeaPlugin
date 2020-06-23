@@ -1,19 +1,26 @@
 package me.jakejmattson.kutils.templates
 
-import com.intellij.ide.actions.*
-import com.intellij.ide.fileTemplates.*
+import com.intellij.ide.actions.CreateFileFromTemplateAction
+import com.intellij.ide.actions.CreateFileFromTemplateDialog
+import com.intellij.ide.fileTemplates.FileTemplate
+import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.ide.fileTemplates.actions.AttributesDefaults
 import com.intellij.ide.fileTemplates.ui.CreateFromTemplateDialog
-import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.DataContext
+import com.intellij.openapi.actionSystem.LangDataKeys
+import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.project.*
+import com.intellij.openapi.project.DumbAware
+import com.intellij.openapi.project.DumbService
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
-import com.intellij.psi.*
+import com.intellij.psi.PsiDirectory
+import com.intellij.psi.PsiFile
 import com.intellij.util.IncorrectOperationException
-import java.util.Properties
+import java.util.*
 
 private const val ACTION_NAME = "KUtils File"
 
@@ -35,13 +42,13 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
         registerTemplates(project)
 
         builder.setTitle("New $ACTION_NAME")
-            .setValidator(NameValidator)
-            .addKind("CommandSet", null, "KUtils CommandSet")
-            .addKind("Service", null, "KUtils Service")
-            .addKind("Data", null, "KUtils Data")
-            .addKind("Precondition", null, "KUtils Precondition")
-            .addKind("ArgumentType", null, "KUtils ArgumentType")
-            .addKind("Conversation", null, "KUtils Conversation")
+                .setValidator(NameValidator)
+                .addKind("CommandSet", null, "KUtils CommandSet")
+                .addKind("Service", null, "KUtils Service")
+                .addKind("Data", null, "KUtils Data")
+                .addKind("Precondition", null, "KUtils Precondition")
+                .addKind("ArgumentType", null, "KUtils ArgumentType")
+                .addKind("Conversation", null, "KUtils Conversation")
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME
@@ -90,7 +97,7 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
         }
 
         private fun findOrCreateTarget(dir: PsiDirectory, name: String, directorySeparators: CharArray): Pair<String, PsiDirectory> {
-            var className = removeKotlinExtensionIfPresent(name)
+            var className = removeKotlinExtension(name)
             var targetDir = dir
 
             for (splitChar in directorySeparators) {
@@ -111,22 +118,22 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
             return Pair(className, targetDir)
         }
 
-        private fun removeKotlinExtensionIfPresent(name: String) = name.removeSuffix(".kt")
+        private fun removeKotlinExtension(name: String) = name.removeSuffix(".kt")
 
         private fun createFromTemplate(dir: PsiDirectory, className: String, template: FileTemplate) =
-            try {
-                val project = dir.project
-                val defaultProperties = FileTemplateManager.getInstance(project).defaultProperties
-                val properties = Properties(defaultProperties)
-                val attributes = AttributesDefaults(className).withFixedName(true)
+                try {
+                    val project = dir.project
+                    val defaultProperties = FileTemplateManager.getInstance(project).defaultProperties
+                    val properties = Properties(defaultProperties)
+                    val attributes = AttributesDefaults(className).withFixedName(true)
 
-                CreateFromTemplateDialog(project, dir, template, attributes, properties).create().containingFile
-            } catch (e: IncorrectOperationException) {
-                throw e
-            } catch (e: Exception) {
-                LOG.error(e)
-                null
-            }
+                    CreateFromTemplateDialog(project, dir, template, attributes, properties).create().containingFile
+                } catch (e: IncorrectOperationException) {
+                    throw e
+                } catch (e: Exception) {
+                    LOG.error(e)
+                    null
+                }
 
         private val FILE_SEPARATORS = charArrayOf('/', '\\')
         private val FQNAME_SEPARATORS = charArrayOf('/', '\\', '.')

@@ -97,7 +97,7 @@ fun registerTemplates(project: Project) {
             import me.jakejmattson.kutils.api.dsl.command.CommandEvent
             
             #if (${"$"}NAME.toString().endsWith("Arg"))
-            open class ${FILE_NAME}(override val name: String = "") : ArgumentType<Any>() {
+            open class $FILE_NAME(override val name: String = "") : ArgumentType<Any>() {
                 companion object : $FILE_NAME()
             #else
             open class ${FILE_NAME}Arg(override val name: String = "") : ArgumentType<Any>() {

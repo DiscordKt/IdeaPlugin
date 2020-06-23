@@ -1,3 +1,7 @@
-*.iml
+# IntelliJ
 .idea/
-out/
+*.iml
+
+# Gradle
+.gradle/
+build/
