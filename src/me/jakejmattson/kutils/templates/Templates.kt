@@ -13,12 +13,12 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
 
-            import me.aberrantfox.kjdautils.api.annotation.CommandSet
-            import me.aberrantfox.kjdautils.api.dsl.command.commands
+            import me.jakejmattson.kutils.api.annotations.CommandSet
+            import me.jakejmattson.kutils.api.dsl.command.commands
             
             #if (${"$"}NAME.toString().endsWith("Commands"))
             @CommandSet("$FILE_NAME")
-            fun ${FILE_NAME}() = commands {
+            fun $FILE_NAME() = commands {
             #else
             @CommandSet("$FILE_NAME")
             fun ${FILE_NAME}Commands() = commands {
@@ -38,7 +38,7 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.aberrantfox.kjdautils.api.annotation.Service
+            import me.jakejmattson.kutils.api.annotations.Service
 
             #if (${"$"}NAME.toString().endsWith("Service"))
             @Service
@@ -58,7 +58,7 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.aberrantfox.kjdautils.api.annotation.Data
+            import me.jakejmattson.kutils.api.annotations.Data
 
             @Data("path/to/data.json")
             data class $FILE_NAME()
@@ -69,14 +69,14 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
 
-            import me.aberrantfox.kjdautils.api.dsl.Precondition
-            import me.aberrantfox.kjdautils.api.dsl.precondition
-            import me.aberrantfox.kjdautils.internal.command.Fail
-            import me.aberrantfox.kjdautils.internal.command.Pass
+            import me.jakejmattson.kutils.api.annotations.Precondition
+            import me.jakejmattson.kutils.api.dsl.preconditions.Fail
+            import me.jakejmattson.kutils.api.dsl.preconditions.Pass
+            import me.jakejmattson.kutils.api.dsl.preconditions.precondition
             
             #if (${"$"}NAME.toString().endsWith("Precondition"))
             @Precondition
-            fun produce${FILE_NAME}() = precondition {
+            fun produce$FILE_NAME() = precondition {
                 return@precondition Pass
             }
             #else
@@ -92,10 +92,9 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.aberrantfox.kjdautils.api.dsl.command.CommandEvent
-            import me.aberrantfox.kjdautils.internal.command.ArgumentType
-            import me.aberrantfox.kjdautils.internal.command.ArgumentResult
-            import me.aberrantfox.kjdautils.internal.command.ConsumptionType
+            import me.jakejmattson.kutils.api.dsl.arguments.ArgumentResult
+            import me.jakejmattson.kutils.api.dsl.arguments.ArgumentType
+            import me.jakejmattson.kutils.api.dsl.command.CommandEvent
             
             #if (${"$"}NAME.toString().endsWith("Arg"))
             open class ${FILE_NAME}(override val name: String = "") : ArgumentType<Any>() {
@@ -104,8 +103,6 @@ fun registerTemplates(project: Project) {
             open class ${FILE_NAME}Arg(override val name: String = "") : ArgumentType<Any>() {
                 companion object : ${FILE_NAME}Arg()
             #end
-
-                override val consumptionType = ConsumptionType.Single
 
                 override fun convert(arg: String, args: List<String>, event: CommandEvent<*>): ArgumentResult<Any> {
                     return ArgumentResult.Success("")
@@ -122,8 +119,8 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.aberrantfox.kjdautils.api.dsl.Conversation
-            import me.aberrantfox.kjdautils.api.dsl.conversation
+            import me.jakejmattson.kutils.api.dsl.conversation.Conversation
+            import me.jakejmattson.kutils.api.dsl.conversation.conversation
             
             #if (${"$"}NAME.toString().endsWith("Conversation"))
             class $FILE_NAME() : Conversation() {
@@ -131,7 +128,7 @@ fun registerTemplates(project: Project) {
             class ${FILE_NAME}Conversation() : Conversation() {
             #end
                 @Start
-                fun conversation() = conversation {
+                fun ${FILE_NAME}Conversation() = conversation {
 
                 }
             }
