@@ -23,12 +23,7 @@ fun registerTemplates(project: Project) {
             @CommandSet("$FILE_NAME")
             fun ${FILE_NAME}Commands() = commands {
             #end
-                command("CommandName") {
-                    description = "Command description"
-                    execute {
-                        it.respond("Hello World")
-                    }
-                }
+
             }
             
         """.trimIndent()

@@ -24,7 +24,7 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <defaultLiveTemplates file="/liveTemplates/KUtils.xml"/>
     </extensions>
 
     <actions>

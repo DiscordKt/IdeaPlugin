@@ -1,0 +1,16 @@
+<templateSet group="KUtils">
+    <template name="cmd" value="command(&quot;$NAME$&quot;) {&#10;    description = &quot;$DESC$&quot;&#10;    execute($PARAMS$) {&#10;        $END$&#10;    }&#10;}" description="Create a new command" toReformat="true" toShortenFQNames="true">
+        <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="DESC" expression="" defaultValue="" alwaysStopAt="true" />
+        <variable name="PARAMS" expression="subtypes(ArgumentType)" defaultValue="" alwaysStopAt="true" />
+        <context>
+            <option name="KOTLIN_STATEMENT" value="true" />
+        </context>
+    </template>
+    <template name="bot" value="start($TOKEN$) {&#10;    configure { discord -&gt;&#10;        prefix {&#10;        &#10;        }&#10;    }&#10;}" description="Create the start block" toReformat="true" toShortenFQNames="true">
+        <variable name="TOKEN" expression="suggestFirstVariableName()" defaultValue="token" alwaysStopAt="false" />
+        <context>
+            <option name="KOTLIN_STATEMENT" value="true" />
+        </context>
+    </template>
+</templateSet>
