@@ -12,11 +12,12 @@ import com.intellij.openapi.project.*
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.psi.*
+import me.jakejmattson.kutils.utils.ICONS
 import java.util.*
 
 private const val ACTION_NAME = "KUtils File"
 
-class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new KUtils file", null), DumbAware {
+class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new KUtils file", ICONS.KUTILS_16), DumbAware {
     override fun postProcess(createdElement: PsiFile, templateName: String?, customProperties: Map<String, String>?) {
         super.postProcess(createdElement, templateName, customProperties)
 

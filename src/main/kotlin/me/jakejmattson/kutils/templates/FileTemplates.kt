@@ -2,6 +2,7 @@ package me.jakejmattson.kutils.templates
 
 import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.openapi.project.Project
+import me.jakejmattson.kutils.utils.IMPORTS
 
 private const val PACKAGE_STATEMENT = "#if (${"$"}{PACKAGE_NAME} != \"\")package ${"$"}{PACKAGE_NAME}#end"
 private const val FILE_NAME = "${"$"}{NAME}"
@@ -13,8 +14,8 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
 
-            import me.jakejmattson.kutils.api.annotations.CommandSet
-            import me.jakejmattson.kutils.api.dsl.command.commands
+            ${IMPORTS.annotations}.CommandSet
+            ${IMPORTS.dsl}.command.commands
             
             #if (${"$"}NAME.toString().endsWith("Commands"))
             @CommandSet("$FILE_NAME")
@@ -33,7 +34,7 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.jakejmattson.kutils.api.annotations.Service
+            ${IMPORTS.annotations}.Service
 
             #if (${"$"}NAME.toString().endsWith("Service"))
             @Service
@@ -53,7 +54,7 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.jakejmattson.kutils.api.annotations.Data
+            ${IMPORTS.annotations}.Data
 
             @Data("path/to/data.json")
             data class $FILE_NAME()
@@ -64,10 +65,10 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
 
-            import me.jakejmattson.kutils.api.annotations.Precondition
-            import me.jakejmattson.kutils.api.dsl.preconditions.Fail
-            import me.jakejmattson.kutils.api.dsl.preconditions.Pass
-            import me.jakejmattson.kutils.api.dsl.preconditions.precondition
+            ${IMPORTS.annotations}.Precondition
+            ${IMPORTS.dsl}.preconditions.Fail
+            ${IMPORTS.dsl}.preconditions.Pass
+            ${IMPORTS.dsl}.preconditions.precondition
             
             #if (${"$"}NAME.toString().endsWith("Precondition"))
             @Precondition
@@ -87,9 +88,9 @@ fun registerTemplates(project: Project) {
         """
             $PACKAGE_STATEMENT
             
-            import me.jakejmattson.kutils.api.dsl.arguments.ArgumentResult
-            import me.jakejmattson.kutils.api.dsl.arguments.ArgumentType
-            import me.jakejmattson.kutils.api.dsl.command.CommandEvent
+            ${IMPORTS.dsl}.arguments.ArgumentResult
+            ${IMPORTS.dsl}.arguments.ArgumentType
+            ${IMPORTS.dsl}.command.CommandEvent
             
             #if (${"$"}NAME.toString().endsWith("Arg"))
             open class $FILE_NAME(override val name: String = "") : ArgumentType<Any>() {
@@ -113,10 +114,10 @@ fun registerTemplates(project: Project) {
     templateManager.registerKUtilsTemplate("Conversation") {
         """
             $PACKAGE_STATEMENT
-            
-            import me.jakejmattson.kutils.api.dsl.conversation.Conversation
-            import me.jakejmattson.kutils.api.dsl.conversation.conversation
-            
+
+            ${IMPORTS.dsl}.conversation.Conversation
+            ${IMPORTS.dsl}.conversation.conversation
+
             #if (${"$"}NAME.toString().endsWith("Conversation"))
             class $FILE_NAME() : Conversation() {
             #else
