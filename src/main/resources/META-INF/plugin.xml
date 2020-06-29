@@ -18,13 +18,14 @@
                     <li><s>Get idiomatic code suggestions.</s></li>
                     <li><s>Receive notifications for updates.</s></li>
                 </ul>
-      ]]>
+        ]]>
     </description>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <defaultLiveTemplates file="/liveTemplates/KUtils.xml"/>
+        <framework.type implementation="me.jakejmattson.kutils.framework.KUtilsFramework"/>
     </extensions>
 
     <actions>

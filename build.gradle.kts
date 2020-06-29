@@ -18,6 +18,7 @@ dependencies {
 intellij {
     pluginName = "KUtils"
     version = "2020.1.2"
+    setPlugins("java")
 }
 
 tasks {
@@ -26,10 +27,10 @@ tasks {
     }
 
     patchPluginXml {
-        this.changeNotes(
-                """
-            The code is different now!
-        """.trimIndent()
+        changeNotes(
+            """
+                The code is different now!
+            """.trimIndent()
         )
     }
 }
