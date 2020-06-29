@@ -38,7 +38,7 @@ class KUtilsFacetConfiguration : FacetConfiguration, PersistentStateComponent<KU
      */
     override fun createEditorTabs(context: FacetEditorContext, manager: FacetValidatorsManager): Array<FacetEditorTab> {
         return arrayOf(
-                KUtilsFacetEditorTab(myFacetState, context, manager)
+            KUtilsFacetEditorTab(myFacetState, context, manager)
         )
     }
 }

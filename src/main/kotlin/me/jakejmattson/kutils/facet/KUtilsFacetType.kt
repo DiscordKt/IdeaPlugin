@@ -24,7 +24,7 @@ class KUtilsFacetType : FacetType<KUtilsFacet, KUtilsFacetConfiguration>(KUTILS_
 
     override fun createFacet(module: Module, name: String, configuration: KUtilsFacetConfiguration, underlyingFacet: Facet<*>?): KUtilsFacet? {
         underlyingFacet as? Facet<KUtilsFacetConfiguration> ?: return null
-        
+
         return KUtilsFacet(this, module, name, configuration, underlyingFacet)
     }
 }

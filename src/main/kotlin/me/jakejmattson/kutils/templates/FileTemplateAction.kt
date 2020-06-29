@@ -13,7 +13,7 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.psi.*
 import me.jakejmattson.kutils.utils.ICONS
-import java.util.*
+import java.util.Properties
 
 private const val ACTION_NAME = "KUtils File"
 
@@ -34,25 +34,25 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
         registerTemplates(project)
 
         builder.setTitle("New $ACTION_NAME")
-                .setValidator(NameValidator)
-                .addKind("CommandSet", null, "KUtils CommandSet")
-                .addKind("Service", null, "KUtils Service")
-                .addKind("Data", null, "KUtils Data")
-                .addKind("Precondition", null, "KUtils Precondition")
-                .addKind("ArgumentType", null, "KUtils ArgumentType")
-                .addKind("Conversation", null, "KUtils Conversation")
+            .setValidator(NameValidator)
+            .addKind("CommandSet", null, "KUtils CommandSet")
+            .addKind("Service", null, "KUtils Service")
+            .addKind("Data", null, "KUtils Data")
+            .addKind("Precondition", null, "KUtils Precondition")
+            .addKind("ArgumentType", null, "KUtils ArgumentType")
+            .addKind("Conversation", null, "KUtils Conversation")
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME
 
     override fun isAvailable(dataContext: DataContext) =
-            if (super.isAvailable(dataContext)) {
-                val ideView = LangDataKeys.IDE_VIEW.getData(dataContext)!!
-                val project = PlatformDataKeys.PROJECT.getData(dataContext)!!
-                val projectFileIndex = ProjectRootManager.getInstance(project).fileIndex
+        if (super.isAvailable(dataContext)) {
+            val ideView = LangDataKeys.IDE_VIEW.getData(dataContext)!!
+            val project = PlatformDataKeys.PROJECT.getData(dataContext)!!
+            val projectFileIndex = ProjectRootManager.getInstance(project).fileIndex
 
-                ideView.directories.any { projectFileIndex.isInSourceContent(it.virtualFile) }
-            } else false
+            ideView.directories.any { projectFileIndex.isInSourceContent(it.virtualFile) }
+        } else false
 
     override fun createFileFromTemplate(name: String, template: FileTemplate, dir: PsiDirectory): PsiFile? {
         val (className, targetDir) = findOrCreateTarget(dir, name)
@@ -82,12 +82,12 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
         val splitChar = DIR_SEPARATORS.firstOrNull { it in fileName } ?: return fileName to dir
         val names = fileName.trim().split(splitChar)
         val targetDir = names
-                .dropLast(1)
-                .fold(dir) { psiDirectory: PsiDirectory, dirName: String ->
-                    psiDirectory.findSubdirectory(dirName) ?: runWriteAction {
-                        psiDirectory.createSubdirectory(dirName)
-                    }
+            .dropLast(1)
+            .fold(dir) { psiDirectory: PsiDirectory, dirName: String ->
+                psiDirectory.findSubdirectory(dirName) ?: runWriteAction {
+                    psiDirectory.createSubdirectory(dirName)
                 }
+            }
 
         return names.last() to targetDir
     }

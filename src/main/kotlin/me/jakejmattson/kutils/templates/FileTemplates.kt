@@ -87,21 +87,21 @@ fun registerTemplates(project: Project) {
     templateManager.registerKUtilsTemplate("ArgumentType") {
         """
             $PACKAGE_STATEMENT
-            
+
             ${IMPORTS.dsl}.arguments.ArgumentResult
             ${IMPORTS.dsl}.arguments.ArgumentType
             ${IMPORTS.dsl}.command.CommandEvent
-            
+
             #if (${"$"}NAME.toString().endsWith("Arg"))
-            open class $FILE_NAME(override val name: String = "") : ArgumentType<Any>() {
+            open class $FILE_NAME(override val name: String = "$FILE_NAME") : ArgumentType<Any>() {
                 companion object : $FILE_NAME()
             #else
-            open class ${FILE_NAME}Arg(override val name: String = "") : ArgumentType<Any>() {
+            open class ${FILE_NAME}Arg(override val name: String = "$FILE_NAME") : ArgumentType<Any>() {
                 companion object : ${FILE_NAME}Arg()
             #end
 
                 override fun convert(arg: String, args: List<String>, event: CommandEvent<*>): ArgumentResult<Any> {
-                    return ArgumentResult.Success("")
+                    TODO("Not yet implemented")
                 }
 
                 override fun generateExamples(event: CommandEvent<*>): List<String> {
