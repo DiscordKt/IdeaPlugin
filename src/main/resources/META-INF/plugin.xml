@@ -27,6 +27,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <defaultLiveTemplates file="/liveTemplates/KUtils.xml"/>
         <framework.type implementation="me.jakejmattson.kutils.framework.KUtilsFramework"/>
+        <moduleType id="KUtils" implementationClass="me.jakejmattson.kutils.module.KUtilsModuleType"/>
     </extensions>
 
     <actions>
