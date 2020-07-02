@@ -3,7 +3,7 @@ package me.jakejmattson.kutils.module
 import com.intellij.openapi.module.*
 import me.jakejmattson.kutils.utils.ICONS
 
-private const val ID = "me.jakejmattson.kutils.module.KUtilsModuleType"
+private const val ID = "KUTILS_MODULE"
 
 class KUtilsModuleType : ModuleType<KUtilsModuleBuilder>(ID) {
     override fun getName() = "KUtils"
