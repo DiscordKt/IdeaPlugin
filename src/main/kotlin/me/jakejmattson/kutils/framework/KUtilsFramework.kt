@@ -5,6 +5,7 @@ import com.intellij.framework.addSupport.*
 import com.intellij.ide.util.frameworkSupport.FrameworkSupportModel
 import com.intellij.openapi.module.*
 import com.intellij.openapi.roots.*
+import me.jakejmattson.kutils.module.KUtilsModuleType
 import me.jakejmattson.kutils.utils.ICONS
 import javax.swing.JComponent
 
@@ -24,7 +25,7 @@ class KUtilsFramework : FrameworkTypeEx(FRAMEWORK_ID) {
                     }
                 }
 
-            override fun isEnabledForModuleType(type: ModuleType<*>) = true
+            override fun isEnabledForModuleType(type: ModuleType<*>) = type is KUtilsModuleType
         }
 
     override fun getPresentableName() = "KUtils Framework"
