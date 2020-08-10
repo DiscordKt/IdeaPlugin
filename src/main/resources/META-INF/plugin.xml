@@ -1,15 +1,15 @@
 <idea-plugin>
-    <id>me.jakejmattson.kutils-plugin</id>
-    <name>KUtils</name>
+    <id>me.jakejmattson.DiscordKt-plugin</id>
+    <name>DiscordKt</name>
     <vendor email="JakeJMattson@gmail.com" url="https://github.com/JakeJMattson">JakeJMattson</vendor>
     <description>
         <![CDATA[
-            Provides <a href="https://github.com/JakeJMattson/KUtils">KUtils</a> support.
+            Provides <a href="https://github.com/JakeJMattson/DiscordKt">DiscordKt</a> support.
             The following features are available:
             <br/><br/>
             <b>Templates</b>
                 <ul>
-                    <li>Create KUtils files from a template.</li>
+                    <li>Create DiscordKt files from a template.</li>
                     <li>Generate code snippets using live templates.</li>
                     <li><s>Create bot projects from a template.</s></li>
                 </ul>
@@ -25,15 +25,15 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <defaultLiveTemplates file="/liveTemplates/KUtils.xml"/>
-        <framework.type implementation="me.jakejmattson.kutils.framework.KUtilsFramework"/>
-        <moduleType id="KUTILS_MODULE" implementationClass="me.jakejmattson.kutils.module.KUtilsModuleType"/>
+        <defaultLiveTemplates file="/liveTemplates/DiscordKt.xml"/>
+        <framework.type implementation="me.jakejmattson.discordkt.framework.DiscordKtFramework"/>
+        <moduleType id="DISCORDKT_MODULE" implementationClass="me.jakejmattson.discordkt.module.DiscordKtModuleType"/>
     </extensions>
 
     <actions>
         <action text="FileTemplateAction"
-                id="me.jakejmattson.kutils.templates.FileTemplateAction"
-                class="me.jakejmattson.kutils.templates.FileTemplateAction">
+                id="me.jakejmattson.discordkt.templates.FileTemplateAction"
+                class="me.jakejmattson.discordkt.templates.FileTemplateAction">
             <add-to-group group-id="NewGroup" anchor="first"/>
         </action>
     </actions>

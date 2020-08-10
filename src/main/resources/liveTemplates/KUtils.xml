@@ -1,4 +1,4 @@
-<templateSet group="KUtils">
+<templateSet group="DiscordKt">
     <template name="cmd" value="command(&quot;$NAME$&quot;) {&#10;    description = &quot;$DESC$&quot;&#10;    execute($PARAMS$) {&#10;        $END$&#10;    }&#10;}" description="Create a new command" toReformat="true" toShortenFQNames="true">
         <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
         <variable name="DESC" expression="" defaultValue="" alwaysStopAt="true" />

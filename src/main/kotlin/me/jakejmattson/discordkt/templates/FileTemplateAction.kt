@@ -1,4 +1,4 @@
-package me.jakejmattson.kutils.templates
+package me.jakejmattson.discordkt.templates
 
 import com.intellij.ide.actions.*
 import com.intellij.ide.fileTemplates.*
@@ -12,12 +12,12 @@ import com.intellij.openapi.project.*
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.psi.*
-import me.jakejmattson.kutils.utils.ICONS
-import java.util.Properties
+import me.jakejmattson.discordkt.utils.ICONS
+import java.util.*
 
-private const val ACTION_NAME = "KUtils File"
+private const val ACTION_NAME = "DiscordKt File"
 
-class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new KUtils file", ICONS.KUTILS_16), DumbAware {
+class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates new DiscordKt file", ICONS.DISCORDKT_16), DumbAware {
     override fun postProcess(createdElement: PsiFile, templateName: String?, customProperties: Map<String, String>?) {
         super.postProcess(createdElement, templateName, customProperties)
 
@@ -35,12 +35,12 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
 
         builder.setTitle("New $ACTION_NAME")
             .setValidator(NameValidator)
-            .addKind("CommandSet", null, "KUtils CommandSet")
-            .addKind("Service", null, "KUtils Service")
-            .addKind("Data", null, "KUtils Data")
-            .addKind("Precondition", null, "KUtils Precondition")
-            .addKind("ArgumentType", null, "KUtils ArgumentType")
-            .addKind("Conversation", null, "KUtils Conversation")
+            .addKind("CommandSet", null, "DiscordKt CommandSet")
+            .addKind("Service", null, "DiscordKt Service")
+            .addKind("Data", null, "DiscordKt Data")
+            .addKind("Precondition", null, "DiscordKt Precondition")
+            .addKind("ArgumentType", null, "DiscordKt ArgumentType")
+            .addKind("Conversation", null, "DiscordKt Conversation")
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String) = ACTION_NAME

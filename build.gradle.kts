@@ -15,7 +15,7 @@ dependencies {
 }
 
 intellij {
-    pluginName = "KUtils"
+    pluginName = "DiscordKt"
     version = "2020.1.2"
     setPlugins("java")
 }

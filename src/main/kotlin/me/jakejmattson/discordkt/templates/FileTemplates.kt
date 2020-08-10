@@ -1,8 +1,8 @@
-package me.jakejmattson.kutils.templates
+package me.jakejmattson.discordkt.templates
 
 import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.openapi.project.Project
-import me.jakejmattson.kutils.utils.IMPORTS
+import me.jakejmattson.discordkt.utils.IMPORTS
 
 private const val PACKAGE_STATEMENT = "#if (${"$"}{PACKAGE_NAME} != \"\")package ${"$"}{PACKAGE_NAME}#end"
 private const val FILE_NAME = "${"$"}{NAME}"
@@ -10,7 +10,7 @@ private const val FILE_NAME = "${"$"}{NAME}"
 fun registerTemplates(project: Project) {
     val templateManager = FileTemplateManager.getInstance(project)
 
-    templateManager.registerKUtilsTemplate("CommandSet") {
+    templateManager.registerDiscordKtTemplate("CommandSet") {
         """
             $PACKAGE_STATEMENT
 
@@ -30,7 +30,7 @@ fun registerTemplates(project: Project) {
         """.trimIndent()
     }
 
-    templateManager.registerKUtilsTemplate("Service") {
+    templateManager.registerDiscordKtTemplate("Service") {
         """
             $PACKAGE_STATEMENT
             
@@ -50,7 +50,7 @@ fun registerTemplates(project: Project) {
         """.trimIndent()
     }
 
-    templateManager.registerKUtilsTemplate("Data") {
+    templateManager.registerDiscordKtTemplate("Data") {
         """
             $PACKAGE_STATEMENT
             
@@ -61,7 +61,7 @@ fun registerTemplates(project: Project) {
         """.trimIndent()
     }
 
-    templateManager.registerKUtilsTemplate("Precondition") {
+    templateManager.registerDiscordKtTemplate("Precondition") {
         """
             $PACKAGE_STATEMENT
 
@@ -84,7 +84,7 @@ fun registerTemplates(project: Project) {
         """.trimIndent()
     }
 
-    templateManager.registerKUtilsTemplate("ArgumentType") {
+    templateManager.registerDiscordKtTemplate("ArgumentType") {
         """
             $PACKAGE_STATEMENT
 
@@ -111,7 +111,7 @@ fun registerTemplates(project: Project) {
         """.trimIndent()
     }
 
-    templateManager.registerKUtilsTemplate("Conversation") {
+    templateManager.registerDiscordKtTemplate("Conversation") {
         """
             $PACKAGE_STATEMENT
 
@@ -132,6 +132,6 @@ fun registerTemplates(project: Project) {
     }
 }
 
-private fun FileTemplateManager.registerKUtilsTemplate(name: String, template: () -> String) {
-    addTemplate("KUtils $name", "kt").text = template.invoke()
+private fun FileTemplateManager.registerDiscordKtTemplate(name: String, template: () -> String) {
+    addTemplate("DiscordKt $name", "kt").text = template.invoke()
 }
