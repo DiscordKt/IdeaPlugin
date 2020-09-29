@@ -1,4 +1,4 @@
-package me.jakejmattson.discordkt.utils
+package me.jakejmattson.plugin.utils
 
 import javax.swing.ImageIcon
 

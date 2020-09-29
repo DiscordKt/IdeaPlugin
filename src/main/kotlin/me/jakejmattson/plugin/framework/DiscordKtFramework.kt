@@ -1,12 +1,12 @@
-package me.jakejmattson.discordkt.framework
+package me.jakejmattson.plugin.framework
 
 import com.intellij.framework.FrameworkTypeEx
 import com.intellij.framework.addSupport.*
 import com.intellij.ide.util.frameworkSupport.FrameworkSupportModel
 import com.intellij.openapi.module.*
 import com.intellij.openapi.roots.*
-import me.jakejmattson.discordkt.module.DiscordKtModuleType
-import me.jakejmattson.discordkt.utils.ICONS
+import me.jakejmattson.plugin.module.DiscordKtModuleType
+import me.jakejmattson.plugin.utils.ICONS
 import javax.swing.JComponent
 
 private const val FRAMEWORK_ID = "me.jakejmattson.discordkt.framework.DiscordKtFramework"

@@ -1,4 +1,4 @@
-package me.jakejmattson.discordkt.module
+package me.jakejmattson.plugin.module
 
 import com.intellij.ide.util.projectWizard.*
 import com.intellij.openapi.Disposable

@@ -1,8 +1,8 @@
-package me.jakejmattson.discordkt.templates
+package me.jakejmattson.plugin.templates
 
 import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.openapi.project.Project
-import me.jakejmattson.discordkt.utils.IMPORTS
+import me.jakejmattson.plugin.utils.IMPORTS
 
 private const val PACKAGE_STATEMENT = "#if (${"$"}{PACKAGE_NAME} != \"\")package ${"$"}{PACKAGE_NAME}#end"
 private const val FILE_NAME = "${"$"}{NAME}"

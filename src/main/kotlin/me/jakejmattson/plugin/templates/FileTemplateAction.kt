@@ -1,4 +1,4 @@
-package me.jakejmattson.discordkt.templates
+package me.jakejmattson.plugin.templates
 
 import com.intellij.ide.actions.*
 import com.intellij.ide.fileTemplates.*
@@ -12,7 +12,7 @@ import com.intellij.openapi.project.*
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
 import com.intellij.psi.*
-import me.jakejmattson.discordkt.utils.ICONS
+import me.jakejmattson.plugin.utils.ICONS
 import java.util.*
 
 private const val ACTION_NAME = "DiscordKt File"

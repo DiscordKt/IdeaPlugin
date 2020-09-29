@@ -2,7 +2,7 @@ group = "me.jakejmattson"
 version = "0.2.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.10"
     id("org.jetbrains.intellij") version "0.4.21"
 }
 

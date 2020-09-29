@@ -26,14 +26,14 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <defaultLiveTemplates file="/liveTemplates/DiscordKt.xml"/>
-        <framework.type implementation="me.jakejmattson.discordkt.framework.DiscordKtFramework"/>
-        <moduleType id="DISCORDKT_MODULE" implementationClass="me.jakejmattson.discordkt.module.DiscordKtModuleType"/>
+        <framework.type implementation="me.jakejmattson.plugin.framework.DiscordKtFramework"/>
+        <moduleType id="DISCORDKT_MODULE" implementationClass="me.jakejmattson.plugin.module.DiscordKtModuleType"/>
     </extensions>
 
     <actions>
         <action text="FileTemplateAction"
-                id="me.jakejmattson.discordkt.templates.FileTemplateAction"
-                class="me.jakejmattson.discordkt.templates.FileTemplateAction">
+                id="me.jakejmattson.plugin.templates.FileTemplateAction"
+                class="me.jakejmattson.plugin.templates.FileTemplateAction">
             <add-to-group group-id="NewGroup" anchor="first"/>
         </action>
     </actions>

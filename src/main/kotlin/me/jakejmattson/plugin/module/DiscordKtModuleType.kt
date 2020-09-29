@@ -1,7 +1,7 @@
-package me.jakejmattson.discordkt.module
+package me.jakejmattson.plugin.module
 
 import com.intellij.openapi.module.*
-import me.jakejmattson.discordkt.utils.ICONS
+import me.jakejmattson.plugin.utils.ICONS
 
 private const val ID = "DISCORDKT_MODULE"
 
