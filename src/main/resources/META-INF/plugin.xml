@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>me.jakejmattson.DiscordKt-plugin</id>
+    <id>me.jakejmattson.DiscordKt</id>
     <name>DiscordKt</name>
     <vendor email="JakeJMattson@gmail.com" url="https://github.com/JakeJMattson">JakeJMattson</vendor>
     <description>

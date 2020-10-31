@@ -1,4 +1,4 @@
-package me.jakejmattson.plugin.templates.raw
+package codeTemplates
 
 import me.jakejmattson.discordkt.api.annotations.Service
 

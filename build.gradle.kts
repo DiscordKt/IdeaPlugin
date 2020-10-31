@@ -1,5 +1,5 @@
 group = "me.jakejmattson"
-version = "0.2.0-SNAPSHOT"
+version = "0.3.0-SNAPSHOT"
 
 plugins {
     kotlin("jvm") version "1.4.10"
@@ -8,6 +8,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
