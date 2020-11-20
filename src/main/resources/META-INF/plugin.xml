@@ -25,7 +25,7 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <defaultLiveTemplates file="/liveTemplates/DiscordKt.xml"/>
+        <defaultLiveTemplates file="/liveTemplates/discordkt.xml"/>
         <framework.type implementation="me.jakejmattson.plugin.framework.DiscordKtFramework"/>
         <moduleType id="DISCORDKT_MODULE" implementationClass="me.jakejmattson.plugin.module.DiscordKtModuleType"/>
     </extensions>
