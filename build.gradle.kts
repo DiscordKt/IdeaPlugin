@@ -2,8 +2,9 @@ group = "me.jakejmattson"
 version = "0.3.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.4.10"
-    id("org.jetbrains.intellij") version "0.6.4"
+    kotlin("jvm") version "1.5.10"
+    id("org.jetbrains.intellij") version "0.7.3"
+    id("com.github.ben-manes.versions") version "0.39.0"
 }
 
 repositories {
