@@ -1,17 +1,30 @@
 package me.jakejmattson.plugin.module
 
-import com.intellij.openapi.module.*
-import me.jakejmattson.plugin.utils.ICONS
+import com.intellij.openapi.module.ModuleType
+import me.jakejmattson.plugin.utils.ICONS.DISCORDKT_16
+import javax.swing.Icon
 
-private const val ID = "DISCORDKT_MODULE"
+internal class DiscordKtModuleType : ModuleType<DiscordKtModuleBuilder>("DiscordKt") {
+    override fun getName(): String {
+        return "DiscordKt"
+    }
 
-class DiscordKtModuleType : ModuleType<DiscordKtModuleBuilder>(ID) {
-    override fun getName() = "DiscordKt"
-    override fun getDescription() = "DiscordKt module type"
-    override fun getNodeIcon(b: Boolean) = ICONS.DISCORDKT_16
-    override fun createModuleBuilder() = DiscordKtModuleBuilder()
+    override fun getDescription(): String {
+        return "DiscordKt Module"
+    }
+
+    val bigIcon: Icon
+        get() = DISCORDKT_16
+
+    override fun getNodeIcon( isOpened: Boolean): Icon {
+        return DISCORDKT_16
+    }
+
+    override fun createModuleBuilder(): DiscordKtModuleBuilder {
+        return DiscordKtModuleBuilder()
+    }
 
     companion object {
-        fun getInstance() = ModuleTypeManager.getInstance().findByID(ID) as DiscordKtModuleType
+        val instance = DiscordKtModuleType()
     }
 }

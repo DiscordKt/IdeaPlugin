@@ -34,4 +34,12 @@ tasks {
             """.trimIndent()
         )
     }
+
+    register<Zip>("zipSimpleTemplate") {
+        archiveFileName.set("Simple Template.zip")
+        destinationDirectory.set(file("src/main/resources/projectTemplates"))
+
+        from("template-projects/discordkt-gradle/")
+        exclude(".idea/", ".gradle/")
+    }
 }
