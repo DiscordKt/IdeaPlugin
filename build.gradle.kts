@@ -1,8 +1,9 @@
 group = "me.jakejmattson"
-version = "0.3.0-SNAPSHOT"
+version = "0.4.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.5.10"
+    idea
+    kotlin("jvm") version "1.4.32"
     id("org.jetbrains.intellij") version "0.7.3"
     id("com.github.ben-manes.versions") version "0.39.0"
 }
@@ -19,12 +20,12 @@ dependencies {
 intellij {
     pluginName = "DiscordKt"
     version = "2020.1.2"
-    setPlugins("java")
+    setPlugins("java", "Kotlin")
 }
 
 tasks {
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "11"
     }
 
     patchPluginXml {
