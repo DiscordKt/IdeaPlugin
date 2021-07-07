@@ -14,14 +14,11 @@ class DiscordKtFacetType : FacetType<DiscordKtFacet, DiscordKtFacetConfiguration
             DiscordKtFacet(this, module, name, configuration, underlyingFacet)
 
     override fun createDefaultConfiguration() = DiscordKtFacetConfiguration()
-
     override fun isSuitableModuleType(moduleType: ModuleType<*>?) = true
-
     override fun getIcon(): Icon = ICONS.DISCORDKT_16
 
     companion object {
         val ID = FacetTypeId<DiscordKtFacet>("DiscordKt")
         val INSTANCE = DiscordKtFacetType()
     }
-
 }

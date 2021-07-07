@@ -7,6 +7,7 @@ import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Disposer
 import com.intellij.psi.codeStyle.PackageEntry
+import org.jetbrains.kotlin.idea.core.formatter.KotlinPackageEntry
 import org.jetbrains.kotlin.idea.formatter.kotlinCustomSettings
 import org.jetbrains.kotlin.idea.util.projectStructure.allModules
 
@@ -16,14 +17,7 @@ class DiscordKtFacet(
     name: String,
     configuration: DiscordKtFacetConfiguration,
     underlyingFacet: Facet<*>?
-) : Facet<DiscordKtFacetConfiguration>(
-        type,
-        module,
-        name,
-        configuration,
-        underlyingFacet
-) {
-
+) : Facet<DiscordKtFacetConfiguration>(type, module, name, configuration, underlyingFacet) {
     init {
         Disposer.register(this, configuration)
     }
@@ -34,6 +28,7 @@ class DiscordKtFacet(
                 val facet = FacetManager.getInstance(module)?.getFacetByType(DiscordKtFacetType.ID)
                 if (facet != null) return facet
             }
+
             return null
         }
     }
@@ -42,9 +37,9 @@ class DiscordKtFacet(
         try {
             val codeStyleSettings = CodeStyle.getDefaultSettings()
             val settings = codeStyleSettings.kotlinCustomSettings
+
             if (!settings.PACKAGES_TO_USE_STAR_IMPORTS.contains("discordkt")) {
-                // PackageEntry(false, "discordkt", false)
-                val entry = PackageEntry(true, "discordkt", true)
+                val entry = KotlinPackageEntry("discordkt", true)
                 settings.PACKAGES_TO_USE_STAR_IMPORTS.addEntry(entry)
             }
         } catch (ignored: Exception) {

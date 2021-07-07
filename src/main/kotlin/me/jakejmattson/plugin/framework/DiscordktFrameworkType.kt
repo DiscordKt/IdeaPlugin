@@ -12,20 +12,17 @@ import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.openapi.roots.ui.configuration.FacetsProvider
 import me.jakejmattson.plugin.facet.DiscordKtFacet
 import me.jakejmattson.plugin.facet.DiscordKtFacetType
+import me.jakejmattson.plugin.module.DiscordKtModuleType
 import me.jakejmattson.plugin.utils.ICONS
 import javax.swing.Icon
 
 class DiscordKtFrameworkType : FrameworkTypeEx("DiscordKt") {
     override fun getIcon(): Icon = ICONS.DISCORDKT_16
-
     override fun getPresentableName() = id
 
     override fun createProvider() = object : FrameworkSupportInModuleProvider() {
         override fun getFrameworkType() = this@DiscordKtFrameworkType
-
-        override fun isEnabledForModuleType(moduleType: ModuleType<*>): Boolean {
-            return true
-        }
+        override fun isEnabledForModuleType(moduleType: ModuleType<*>) = moduleType is DiscordKtModuleType
 
         override fun isSupportAlreadyAdded(module: Module, facetsProvider: FacetsProvider) =
             facetsProvider.getAllFacets(module).find { it is DiscordKtFacet } != null

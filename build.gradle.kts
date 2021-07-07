@@ -1,10 +1,10 @@
-group = "me.jakejmattson"
-version = "0.4.0-SNAPSHOT"
+group = properties("pluginGroup")
+version = properties("pluginVersion")
 
 plugins {
     idea
-    kotlin("jvm") version "1.4.32"
-    id("org.jetbrains.intellij") version "0.7.3"
+    kotlin("jvm") version "1.5.20"
+    id("org.jetbrains.intellij") version "1.1.2"
     id("com.github.ben-manes.versions") version "0.39.0"
 }
 
@@ -18,9 +18,10 @@ dependencies {
 }
 
 intellij {
-    pluginName = "DiscordKt"
-    version = "2020.1.2"
-    setPlugins("java", "Kotlin")
+    pluginName.set(properties("pluginName"))
+    version.set(properties("platformVersion"))
+    plugins.set(listOf("com.intellij.java"))
+    type.set("IC")
 }
 
 tasks {
@@ -29,11 +30,7 @@ tasks {
     }
 
     patchPluginXml {
-        changeNotes(
-            """
-                The code is different now!
-            """.trimIndent()
-        )
+
     }
 
     register<Zip>("zipSimpleTemplate") {
@@ -44,3 +41,5 @@ tasks {
         exclude(".idea/", ".gradle/")
     }
 }
+
+fun properties(key: String) = project.findProperty(key).toString()
