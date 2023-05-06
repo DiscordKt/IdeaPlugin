@@ -1,19 +1,25 @@
 package me.jakejmattson.plugin.templates
 
-import com.intellij.ide.actions.*
-import com.intellij.ide.fileTemplates.*
+import com.intellij.ide.actions.CreateFileFromTemplateAction
+import com.intellij.ide.actions.CreateFileFromTemplateDialog
+import com.intellij.ide.fileTemplates.FileTemplate
+import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.ide.fileTemplates.actions.AttributesDefaults
 import com.intellij.ide.fileTemplates.ui.CreateFromTemplateDialog
-import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.DataContext
+import com.intellij.openapi.actionSystem.LangDataKeys
+import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.fileEditor.FileEditorManager
-import com.intellij.openapi.project.*
+import com.intellij.openapi.project.DumbAware
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.ui.InputValidatorEx
-import com.intellij.psi.*
+import com.intellij.psi.PsiDirectory
+import com.intellij.psi.PsiFile
 import me.jakejmattson.plugin.utils.ICONS
-import java.util.*
+import java.util.Properties
 
 private const val ACTION_NAME = "DiscordKt File"
 
@@ -39,7 +45,7 @@ class FileTemplateAction : CreateFileFromTemplateAction(ACTION_NAME, "Creates ne
             .addKind("Service", null, "DiscordKt Service")
             .addKind("Data", null, "DiscordKt Data")
             .addKind("Precondition", null, "DiscordKt Precondition")
-            .addKind("ArgumentType", null, "DiscordKt ArgumentType")
+            .addKind("Argument", null, "DiscordKt Argument")
             .addKind("Conversation", null, "DiscordKt Conversation")
     }
 

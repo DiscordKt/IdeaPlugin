@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation("me.jakejmattson:DiscordKt:0.22.0")
+    implementation("me.jakejmattson:DiscordKt:0.23.4")
 }
 
 intellij {

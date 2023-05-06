@@ -1,6 +1,6 @@
 package codeTemplates
 
-import me.jakejmattson.discordkt.api.annotations.Service
+import me.jakejmattson.discordkt.annotations.Service
 
 @Service
 class TemplateService {

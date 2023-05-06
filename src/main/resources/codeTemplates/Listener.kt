@@ -1,6 +1,6 @@
 package codeTemplates
 
-import me.jakejmattson.discordkt.api.dsl.listeners
+import me.jakejmattson.discordkt.dsl.listeners
 
 fun listenerName() = listeners {
     TODO("Not yet implemented")

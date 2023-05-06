@@ -25,7 +25,7 @@ fun registerTemplates(project: Project) {
         it.replace("preconditionName", FILE_NAME)
     }
 
-    templateManager.registerDiscordKtTemplate("ArgumentType") {
+    templateManager.registerDiscordKtTemplate("Argument") {
         it.replace("Template", FILE_NAME)
     }
 

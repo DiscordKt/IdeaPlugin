@@ -1,5 +1,5 @@
 package codeTemplates
 
-import me.jakejmattson.discordkt.api.dsl.Data
+import me.jakejmattson.discordkt.dsl.Data
 
-data class DataClass(val x: Int) : Data("path/to/data.json")
+data class DataClass(val x: Int) : Data()
