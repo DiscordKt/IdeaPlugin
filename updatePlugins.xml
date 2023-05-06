@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+  <!--
+   - "id" (required) - used by JetBrains IDEs to uniquely identify
+     a plugin. Must match <id> in the plugin.xml file.
+   - "url" (required) - URL to download the plugin JAR/ZIP file.
+     Must be HTTPS.
+   - "version" (required) - version of this plugin. Must match <version>
+     in the plugin.xml file.
+  -->
+  <plugin
+      id="me.jakejmattson.discordkt"
+      url="https://github.com/DiscordKt/IdeaPlugin/releases/download/0.6.0/discordkt-plugin-0.6.0.zip"
+      version="0.6.0">
+    <idea-version since-build="231"/>
+  </plugin>
+</plugins>
