@@ -1,5 +1,5 @@
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = "me.jakejmattson"
+version = "0.5.0-SNAPSHOT"
 
 plugins {
     idea
@@ -24,13 +24,17 @@ intellij {
 }
 
 tasks {
+    compileJava {
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
+    }
+
     compileKotlin {
-        kotlinOptions.jvmTarget = "11"
+        kotlinOptions.jvmTarget = "17"
     }
 
     patchPluginXml {
-        sinceBuild.set("222")
-        untilBuild.set("232.*")
+        sinceBuild.set("231")
     }
 
     register<Zip>("zipSimpleTemplate") {
@@ -41,5 +45,3 @@ tasks {
         exclude(".idea/", ".gradle/")
     }
 }
-
-fun properties(key: String) = project.findProperty(key).toString()

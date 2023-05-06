@@ -23,6 +23,7 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <projectTemplate projectType="DiscordKt" templatePath="projectTemplates/Simple Template.zip" category="true"/>
