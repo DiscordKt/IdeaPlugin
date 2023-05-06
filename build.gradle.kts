@@ -3,9 +3,9 @@ version = properties("pluginVersion")
 
 plugins {
     idea
-    kotlin("jvm") version "1.5.20"
-    id("org.jetbrains.intellij") version "1.1.2"
-    id("com.github.ben-manes.versions") version "0.39.0"
+    kotlin("jvm") version "1.8.21"
+    id("org.jetbrains.intellij") version "1.13.3"
+    id("com.github.ben-manes.versions") version "0.46.0"
 }
 
 repositories {
@@ -14,14 +14,13 @@ repositories {
 }
 
 dependencies {
-    implementation("me.jakejmattson:DiscordKt:0.22.0-SNAPSHOT")
+    implementation("me.jakejmattson:DiscordKt:0.22.0")
 }
 
 intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    plugins.set(listOf("com.intellij.java"))
-    type.set("IC")
+    version.set("2023.1")
+    type.set("IU")
+    plugins.set(listOf("org.jetbrains.kotlin", "com.intellij.java"))
 }
 
 tasks {
@@ -30,7 +29,8 @@ tasks {
     }
 
     patchPluginXml {
-
+        sinceBuild.set("222")
+        untilBuild.set("232.*")
     }
 
     register<Zip>("zipSimpleTemplate") {
