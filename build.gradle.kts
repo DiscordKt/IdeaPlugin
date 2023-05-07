@@ -1,5 +1,5 @@
 group = "me.jakejmattson"
-version = "0.6.4"
+version = "0.6.5"
 
 plugins {
     kotlin("jvm") version "1.8.21"
@@ -36,11 +36,13 @@ tasks {
     }
 
     buildPlugin {
+        dependsOn("zipSimpleTemplate")
         archiveBaseName.set("DiscordKt")
         archiveVersion.set("")
     }
 
     register<Zip>("zipSimpleTemplate") {
+        dependsOn(processResources)
         archiveFileName.set("Simple Template.zip")
         destinationDirectory.set(file("src/main/resources/projectTemplates"))
 
