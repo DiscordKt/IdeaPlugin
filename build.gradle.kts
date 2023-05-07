@@ -1,5 +1,5 @@
 group = "me.jakejmattson"
-version = "0.6.1"
+version = "0.6.3"
 
 plugins {
     kotlin("jvm") version "1.8.21"
@@ -32,6 +32,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("231")
+        version.set(project.version.toString())
     }
 
     buildPlugin {
