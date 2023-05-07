@@ -1,5 +1,5 @@
 group = "me.jakejmattson"
-version = "0.6.0"
+version = "0.6.1"
 
 plugins {
     kotlin("jvm") version "1.8.21"
@@ -35,7 +35,8 @@ tasks {
     }
 
     buildPlugin {
-        archiveBaseName.set("discordkt-plugin")
+        archiveBaseName.set("DiscordKt")
+        archiveVersion.set("")
     }
 
     register<Zip>("zipSimpleTemplate") {
