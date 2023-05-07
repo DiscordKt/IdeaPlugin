@@ -10,8 +10,8 @@
   -->
   <plugin
       id="me.jakejmattson.discordkt"
-      url="https://github.com/DiscordKt/IdeaPlugin/releases/download/0.6.3/DiscordKt.zip"
-      version="0.6.3">
+      url="https://github.com/DiscordKt/IdeaPlugin/releases/download/0.6.4/DiscordKt.zip"
+      version="0.6.4">
     <idea-version since-build="231"/>
   </plugin>
 </plugins>
